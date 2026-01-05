@@ -1,0 +1,169 @@
+# Combined batch config to sweep Weaviate, PgVector (HNSW), and MariaDB (HNSW)
+
+weaviate:
+  - db_label: weaviate-m08-efc64
+    url: http://localhost:8080
+    grpc_url: localhost:50051
+    no_auth: true
+    m: 8
+    ef_construction: 64
+    ef: 64
+    # stages and case
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    # quick concurrent tuning
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+
+  - db_label: weaviate-m16-efc128
+    url: http://localhost:8080
+    grpc_url: localhost:50051
+    no_auth: true
+    m: 16
+    ef_construction: 128
+    ef: 64
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+
+  - db_label: weaviate-m24-efc128
+    url: http://localhost:8080
+    grpc_url: localhost:50051
+    no_auth: true
+    m: 24
+    ef_construction: 128
+    ef: 64
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+
+pgvectorhnsw:
+  - db_label: pgvector-hnsw-m08-efc64
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5432
+    m: 8
+    ef_construction: 64
+    ef_search: 64
+    # stages and case
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    # quick concurrent tuning
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+    # pg tuning
+    create_index_before_load: false
+    create_index_after_load: true
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+
+  - db_label: pgvector-hnsw-m16-efc128
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5432
+    m: 16
+    ef_construction: 128
+    ef_search: 64
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+    create_index_before_load: false
+    create_index_after_load: true
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+
+  - db_label: pgvector-hnsw-m24-efc128
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5432
+    m: 24
+    ef_construction: 128
+    ef_search: 64
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+    create_index_before_load: false
+    create_index_after_load: true
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+
+mariadbhnsw:
+  - db_label: mariadb-hnsw-m08-efc64
+    username: bench
+    password: bench
+    host: localhost
+    port: 3306
+    storage_engine: InnoDB
+    m: 8
+    ef_search: 64
+    max_cache_size: 536870912
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    # quick concurrent tuning
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+
+  - db_label: mariadb-hnsw-m16-efc128
+    username: bench
+    password: bench
+    host: localhost
+    port: 3306
+    storage_engine: InnoDB
+    m: 16
+    ef_search: 64
+    max_cache_size: 536870912
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+
+  - db_label: mariadb-hnsw-m24-efc128
+    username: bench
+    password: bench
+    host: localhost
+    port: 3306
+    storage_engine: InnoDB
+    m: 24
+    ef_search: 64
+    max_cache_size: 536870912
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K

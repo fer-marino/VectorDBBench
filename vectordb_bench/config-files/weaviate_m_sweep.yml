@@ -1,0 +1,35 @@
+weaviate:
+  - db_label: weaviate-m08-efc64
+    url: http://localhost:8080
+    grpc_url: localhost:50051
+    no_auth: true
+    m: 8
+    ef_construction: 64
+    ef: 64
+    # stages and case
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    # quick concurrent tuning (use CLI-compatible names)
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance768D1M
+
+  - db_label: weaviate-m12-efc128
+    # lowered ef_construction to 64 for lighter build
+    url: http://localhost:8080
+    grpc_url: localhost:50051
+    no_auth: true
+    m: 12
+    ef_construction: 64
+    ef: 64
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance768D1M
+
+  # higher m configs removed to avoid heavy memory usage

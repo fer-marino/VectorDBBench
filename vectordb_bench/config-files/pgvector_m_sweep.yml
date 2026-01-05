@@ -1,0 +1,48 @@
+pgvectorhnsw:
+  - db_label: pgvector-hnsw-m08-efc64
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5432
+    m: 8
+    ef_construction: 64
+    ef_search: 64
+    # stages and case
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    # quick concurrent tuning
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance768D1M
+    # pg tuning
+    create_index_before_load: false
+    create_index_after_load: true
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+
+  - db_label: pgvector-hnsw-m12-efc128
+    # lowered ef_construction to 64 for lighter build
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5432
+    m: 12
+    ef_construction: 64
+    ef_search: 64
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance768D1M
+    create_index_before_load: false
+    create_index_after_load: true
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+
+  # higher m configs removed to avoid heavy memory usage

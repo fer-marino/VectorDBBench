@@ -1,0 +1,92 @@
+version: "3.9"
+
+services:
+  weaviate:
+    image: semitechnologies/weaviate:latest
+    ports:
+      - "8080:8080"
+      - "50051:50051" # Added gRPC port for faster ingestion/searches
+    environment:
+      QUERY_DEFAULTS_LIMIT: "10"
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "true"
+      PERSISTENCE_DATA_PATH: "/var/lib/weaviate"
+      DEFAULT_VECTORIZER_MODULE: "none"
+      CLUSTER_HOSTNAME: "node1"
+      GOMEMLIMIT: "4GiB" # Match the scale of your MariaDB tuning
+      PROMETHEUS_MONITORING_ENABLED: "true" # Useful for benchmarking metrics
+      DISK_USE_READONLY_PERCENTAGE: "95" # Allow more disk usage before locking
+      DISK_USE_WARNING_PERCENTAGE: "90"
+      HNSW_FLUSH_IDLE_TIMEOUT: "60" # Better for high-ingestion benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '10'
+          memory: 8G
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+
+  postgres:
+    image: pgvector/pgvector:pg18
+    shm_size: 2g
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vectordb
+    volumes:
+      - pg_data:/var/lib/postgresql/
+      # Initialize pgvector extension on first init of a fresh data dir
+      - ./init-pgvector.sql:/docker-entrypoint-initdb.d/00-init-pgvector.sql:ro
+      # Optional tuned config for benchmarking (uncomment if you provide the file)
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    # Optional: pass a custom config file to Postgres (requires the bind above)
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+    deploy:
+      resources:
+        limits:
+          cpus: '10'
+          memory: 8G
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: vectordbbench
+      MARIADB_USER: bench
+      MARIADB_PASSWORD: bench
+    command:
+      - --innodb_buffer_pool_size=3G
+      - --innodb_buffer_pool_instances=4
+      - --innodb_log_file_size=1G
+      - --innodb_log_buffer_size=256M
+      - --innodb_flush_method=O_DIRECT
+      - --innodb_flush_log_at_trx_commit=2
+      - --innodb_io_capacity=2000
+      - --innodb_io_capacity_max=4000
+      - --innodb_read_io_threads=8
+      - --innodb_write_io_threads=8
+      - --thread_handling=pool-of-threads
+       # Help prevent stall-related crashes
+      - --thread_pool_stall_limit=1000
+      - --thread_pool_size=12
+      - --table_open_cache=4000
+      - --table_open_cache_instances=16
+      - --skip-log-bin
+      - --sort_buffer_size=1M
+      - --tmp_table_size=64M
+      - --max_heap_table_size=64M
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./init-mariadb.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '10'
+          memory: 8G
+volumes:
+  weaviate_data:
+  pg_data:
+  mariadb_data:

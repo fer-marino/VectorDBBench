@@ -1,0 +1,37 @@
+mariadbhnsw:
+#  - db_label: mariadb-hnsw-m16-efc128
+#    username: bench
+#    password: bench
+#    host: localhost
+#    port: 3306
+#    storage_engine: InnoDB
+#    m: 16
+#    ef_search: 64
+#    max_cache_size: 536870912
+#    drop_old: false
+#    load: false
+#    search_serial: true
+#    search_concurrent: true
+#    num_concurrency: "1,10,20"
+#    concurrency_duration: 15
+#    case_type: Performance1536D500K
+
+  - db_label: mariadb-hnsw-m24-efc128
+    username: bench
+    password: bench
+    host: localhost
+    port: 3306
+    storage_engine: InnoDB
+    m: 24
+    ef_search: 64
+    max_cache_size: 536870912
+    drop_old: false
+    load: false
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+
+
+  # higher m configs removed to avoid heavy memory usage
