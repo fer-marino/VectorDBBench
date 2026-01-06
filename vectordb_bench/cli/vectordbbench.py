@@ -1,3 +1,4 @@
+from vectordb_bench.backend.clients.VectorChord.cli import VectorChordIVF
 from ..backend.clients.alisql.cli import AliSQLHNSW
 from ..backend.clients.alloydb.cli import AlloyDBScaNN
 from ..backend.clients.aws_opensearch.cli import AWSOpenSearch
@@ -38,6 +39,7 @@ from .cli import cli
 cli.add_command(PgVectorHNSW)
 cli.add_command(PgVectoRSHNSW)
 cli.add_command(PgVectoRSIVFFlat)
+cli.add_command(VectorChordIVF)
 cli.add_command(Redis)
 cli.add_command(MemoryDB)
 cli.add_command(Weaviate)

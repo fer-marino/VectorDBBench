@@ -662,5 +662,5 @@ def run(
             log.warning(f"Encountered error while monitoring task progress: {e}")
             try:
                 benchmark_runner.stop_running()
-            except Exception:  # noqa: BLE001
+            except Exception:
                 pass

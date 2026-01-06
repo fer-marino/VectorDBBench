@@ -1,4 +1,4 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from collections.abc import Mapping, Sequence
 from typing import Any, LiteralString, TypedDict
 
@@ -18,6 +18,7 @@ class PgVectorConfigDict(TypedDict):
     host: str
     port: int
     dbname: str
+    connect_timeout: int
 
 
 class PgVectorConfig(DBConfig):
@@ -27,6 +28,7 @@ class PgVectorConfig(DBConfig):
     port: int = 5432
     db_name: str = "vectordb"
     table_name: str = "vdbbench_table_test"
+    connect_timeout: int = 60
 
     def to_dict(self) -> PgVectorConfigDict:
         user_str = self.user_name.get_secret_value() if isinstance(self.user_name, SecretStr) else self.user_name
@@ -38,6 +40,7 @@ class PgVectorConfig(DBConfig):
                 "dbname": self.db_name,
                 "user": user_str,
                 "password": pwd_str,
+                "connect_timeout": self.connect_timeout,
             },
             "table_name": self.table_name,
         }
@@ -59,7 +62,7 @@ class PgVectorSessionCommands(TypedDict):
     session_options: Sequence[dict[str, Any]]
 
 
-class PgVectorIndexConfig(BaseModel, DBCaseConfig):
+class PgVectorIndexConfig(BaseModel, DBCaseConfig, ABC):
     metric_type: MetricType | None = None
     create_index_before_load: bool = False
     create_index_after_load: bool = True

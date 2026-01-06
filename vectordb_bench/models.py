@@ -325,10 +325,7 @@ class TestResult(BaseModel):
                     raw_db_cfg.setdefault("url", "http://localhost:8080")
                     raw_db_cfg.setdefault("api_key", "-")
                     raw_db_cfg.setdefault("no_auth", True)
-                elif db == DB.MariaDB:
-                    raw_db_cfg = dict(raw_db_cfg or {})
-                    raw_db_cfg.setdefault("password", "-")
-                elif db == DB.PgVector:
+                elif db == DB.MariaDB or db == DB.PgVector or db == DB.VectorChord:
                     raw_db_cfg = dict(raw_db_cfg or {})
                     raw_db_cfg.setdefault("password", "-")
                 task_config["db_config"] = db.config_cls(**raw_db_cfg)

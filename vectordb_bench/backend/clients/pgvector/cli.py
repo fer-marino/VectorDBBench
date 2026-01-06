@@ -55,6 +55,17 @@ class PgVectorTypedDict(CommonTypedDict):
         ),
     ]
     db_name: Annotated[str, click.option("--db-name", type=str, help="Db name", required=True)]
+    connect_timeout: Annotated[
+        int,
+        click.option(
+            "--connect-timeout",
+            type=int,
+            help="Postgres connection timeout",
+            default=60,
+            show_default=True,
+            required=False,
+        ),
+    ]
     maintenance_work_mem: Annotated[
         str | None,
         click.option(
@@ -149,6 +160,7 @@ def PgVectorIVFFlat(
             host=parameters["host"],
             port=parameters["port"],
             db_name=parameters["db_name"],
+            connect_timeout=parameters["connect_timeout"],
         ),
         db_case_config=PgVectorIVFFlatConfig(
             metric_type=None,
@@ -203,6 +215,7 @@ def PgVectorHNSW(
             host=parameters["host"],
             port=parameters["port"],
             db_name=parameters["db_name"],
+            connect_timeout=parameters["connect_timeout"],
         ),
         db_case_config=PgVectorHNSWConfig(
             m=parameters["m"],

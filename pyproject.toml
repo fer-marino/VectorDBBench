@@ -28,7 +28,7 @@ dependencies = [
     "click",
     "pytz",
     "streamlit-autorefresh",
-    "streamlit>=1.52.2", # There is a breaking change in 1.44 related to get_page https://discuss.streamlit.io/t/from-streamlit-source-util-import-get-pages-gone-in-v-1-44-0-need-urgent-help/98399
+    "streamlit>=1.52.2",
     "streamlit_extras",
     "tqdm",
     "s3fs",
@@ -76,6 +76,7 @@ all = [
     "lancedb",
     "mysql-connector-python",
     "turbopuffer[fast]",
+    "vechord"
 ]
 
 qdrant          = [ "qdrant-client" ]
@@ -87,6 +88,8 @@ elastic         = [ "elasticsearch" ]
 pgvector        = [ "psycopg", "psycopg-binary", "pgvector" ]
 # for pgvector, pgvectorscale, pgdiskann, and, alloydb
 
+vechord         = [ "vechord" ]
+# this is deprecated, use vechord instead
 pgvecto_rs      = [ "pgvecto_rs[psycopg3]>=0.2.2" ]
 redis           = [ "redis" ]
 memorydb        = [ "memorydb" ]

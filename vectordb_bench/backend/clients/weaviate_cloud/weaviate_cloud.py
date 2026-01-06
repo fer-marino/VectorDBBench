@@ -5,12 +5,12 @@ from collections.abc import Iterable
 from contextlib import contextmanager
 
 import weaviate
+from pydantic import SecretStr
+from weaviate.classes.config import Configure, DataType, Property, Reconfigure, VectorDistances
 from weaviate.exceptions import WeaviateBaseError
-from weaviate.classes.config import Configure, DataType, Property, VectorDistances, Reconfigure
 
 from ..api import DBCaseConfig, VectorDB
 from .config import WeaviateConfig
-from pydantic import SecretStr
 
 log = logging.getLogger(__name__)
 

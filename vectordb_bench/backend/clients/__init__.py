@@ -56,6 +56,7 @@ class DB(Enum):
     AliSQL = "AlibabaCloudRDSMySQL"
     Doris = "Doris"
     TurboPuffer = "TurboPuffer"
+    VectorChord = "VectorChord"
 
     @property
     def init_cls(self) -> type[VectorDB]:  # noqa: PLR0911, PLR0912, C901, PLR0915
@@ -228,6 +229,11 @@ class DB(Enum):
 
             return AliSQL
 
+        if self == DB.VectorChord:
+            from .VectorChord.vchord import VectorChord
+
+            return VectorChord
+
         msg = f"Unknown DB: {self.name}"
         raise ValueError(msg)
 
@@ -278,6 +284,11 @@ class DB(Enum):
             from .pgvecto_rs.config import PgVectoRSConfig
 
             return PgVectoRSConfig
+
+        if self == DB.VectorChord:
+            from .VectorChord.config import VectorChordConfig
+
+            return VectorChordConfig
 
         if self == DB.PgVectorScale:
             from .pgvectorscale.config import PgVectorScaleConfig
@@ -448,6 +459,11 @@ class DB(Enum):
             from .pgvecto_rs.config import _pgvecto_rs_case_config
 
             return _pgvecto_rs_case_config.get(index_type)
+
+        if self == DB.VectorChord:
+            from .VectorChord.config import _vectorchord_case_config
+
+            return _vectorchord_case_config.get(index_type)
 
         if self == DB.AWSOpenSearch:
             from .aws_opensearch.config import AWSOpenSearchIndexConfig

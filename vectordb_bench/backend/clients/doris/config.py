@@ -18,7 +18,7 @@ class DorisConfig(DBConfig):
     ssl: bool = False
 
     @field_validator("*", mode="before")
-    def not_empty_field(cls, v: any):  # noqa: ANN001
+    def not_empty_field(cls, v: any):
         return v
 
     def to_dict(self) -> dict:

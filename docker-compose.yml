@@ -1,6 +1,23 @@
-version: "3.9"
-
 services:
+  vectorcord:
+    image: ghcr.io/tensorchord/vchord-postgres:pg18-v1.0.0
+    shm_size: 2g
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vectordb
+    volumes:
+      - pg_data:/var/lib/postgresql/
+      # Optional tuned config for benchmarking (uncomment if you provide the file)
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    # Optional: pass a custom config file to Postgres (requires the bind above)
+    command: [ "-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "shared_preload_libraries=vchord" ]
+    deploy:
+      resources:
+        limits:
+          memory: 8G
   weaviate:
     image: semitechnologies/weaviate:latest
     ports:

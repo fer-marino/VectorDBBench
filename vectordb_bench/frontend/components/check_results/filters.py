@@ -46,7 +46,7 @@ def getshownResults(
 
     # Filter out default labels that are not in the options
     filtered_defaults = [label for label in default_selected_task_labels if label in resultSelectOptions]
-    
+
     selectedResultSelectedOptions = st.multiselect(
         "Select the task results you need to analyze.",
         resultSelectOptions,

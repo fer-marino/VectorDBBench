@@ -85,7 +85,7 @@ class OSSOpenSearchIndexConfig(BaseModel, DBCaseConfig):
     knn_derived_source_enabled: bool = False
 
     @model_validator(mode="after")
-    def validate_engine_name(self):  # noqa: D401
+    def validate_engine_name(self):
         """Map engine_name string from UI to engine enum"""
         if self.engine_name:
             engine_name = self.engine_name.lower()
