@@ -17,7 +17,34 @@ from ....cli.cli import (
 
 
 class VectorChordTypedDict(PgVectorTypedDict):
-
+    index_method: Annotated[
+        str,
+        click.option(
+            "--index-method",
+            type=click.Choice(["vchordrq", "vchordg"]),
+            help="Index method to use",
+            default="vchordrq",
+        ),
+    ]
+    m: Annotated[
+        int,
+        click.option(
+            "-m",
+            "--m",
+            type=int,
+            help="Max number of connections per layer",
+            default=16,
+        ),
+    ]
+    ef_construction: Annotated[
+        int,
+        click.option(
+            "--ef-construction",
+            type=int,
+            help="Size of the dynamic candidate list for constructing the graph",
+            default=256,
+        ),
+    ]
     residual_quantization: Annotated[
         str,
         click.option(
@@ -54,6 +81,24 @@ class VectorChordTypedDict(PgVectorTypedDict):
             default=64,
         ),
     ]
+    epsilon: Annotated[
+        float,
+        click.option(
+            "--epsilon",
+            type=float,
+            help="Epsilon parameter for search",
+            default=0.1,
+        ),
+    ]
+    ef_search: Annotated[
+        int,
+        click.option(
+            "--ef-search",
+            type=int,
+            help="Number of candidates to track during search",
+            default=64,
+        ),
+    ]
     create_index_before_load: Annotated[
         bool,
         click.option(
@@ -87,12 +132,17 @@ def VectorChordIVF(
             connect_timeout=parameters["connect_timeout"],
         ),
         db_case_config=VectorChordIVFFlatConfig(
-            max_parallel_workers=parameters["max_parallel_workers"],
+            max_parallel_workers=parameters.get("max_parallel_workers", 2),
+            index_method=parameters.get("index_method", "vchordrq"),
             residual_quantization=parameters.get("residual_quantization") == "True",
             spherical_centroids=parameters.get("spherical_centroids") == "True",
-            create_index_before_load=parameters["create_index_before_load"],
-            probes=parameters["probes"],
-            lists=parameters["lists"],
+            create_index_before_load=parameters.get("create_index_before_load", False),
+            probes=parameters.get("probes") or 64,
+            epsilon=parameters.get("epsilon", 0.1),
+            ef_search=parameters.get("ef_search", 64),
+            m=parameters.get("m", 16),
+            ef_construction=parameters.get("ef_construction", 256),
+            lists=parameters.get("lists") or 1024,
         ),
         **parameters,
     )

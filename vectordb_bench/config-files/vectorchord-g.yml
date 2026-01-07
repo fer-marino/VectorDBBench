@@ -1,0 +1,61 @@
+vectorchordivf:
+  - db_label: vchordg-m8
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5433
+    index_method: vchordg
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+    # Specific to VectorChord
+    m: 8
+    ef_construction: 64
+    ef_search: 64
+  - db_label: vchordg-m16
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5433
+    index_method: vchordg
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+    # Specific to VectorChord
+    m: 16
+    ef_construction: 128
+    ef_search: 64
+  - db_label: vchordg-m24
+    user_name: postgres
+    password: postgres
+    db_name: vectordb
+    host: localhost
+    port: 5433
+    index_method: vchordg
+    drop_old: true
+    load: true
+    search_serial: true
+    search_concurrent: true
+    num_concurrency: "1,10,20"
+    concurrency_duration: 15
+    case_type: Performance1536D500K
+    maintenance_work_mem: "2GB"
+    max_parallel_workers: 12
+    # Specific to VectorChord
+    m: 24
+    ef_construction: 128
+    ef_search: 64

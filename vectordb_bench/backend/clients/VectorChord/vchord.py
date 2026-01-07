@@ -185,15 +185,17 @@ class VectorChord(VectorDB):
 
         index_param = self.case_config.index_param()
         index_options = index_param.get("options", "")
+        index_type = index_param.get("index_type", "vchordrq")
 
         index_create_sql = sql.SQL(
             """
             CREATE INDEX IF NOT EXISTS {index_name} ON public.{table_name}
-            USING vchordrq (embedding {embedding_metric}) WITH (options = {index_options})
+            USING {index_type} (embedding {embedding_metric}) WITH (options = {index_options})
             """,
         ).format(
             index_name=sql.Identifier(self._index_name),
             table_name=sql.Identifier(self.table_name),
+            index_type=sql.Identifier(index_type),
             embedding_metric=sql.Identifier(index_param.get("metric", "l2")),
             index_options=index_options,
         )
