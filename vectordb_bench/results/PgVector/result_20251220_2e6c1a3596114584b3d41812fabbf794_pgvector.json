@@ -1,0 +1,101 @@
+{
+  "run_id": "2e6c1a3596114584b3d41812fabbf794",
+  "task_label": "2e6c1a3596114584b3d41812fabbf794",
+  "results": [
+    {
+      "metrics": {
+        "max_load_count": 0,
+        "insert_duration": 356.8737,
+        "optimize_duration": 1042.7634,
+        "load_duration": 1399.6372,
+        "qps": 187.3118,
+        "serial_latency_p99": 0.1189,
+        "serial_latency_p95": 0.1037,
+        "recall": 0.8829,
+        "ndcg": 0.8977,
+        "conc_num_list": [
+          1,
+          10,
+          20
+        ],
+        "conc_qps_list": [
+          10.476,
+          126.4898,
+          187.3118
+        ],
+        "conc_latency_p99_list": [
+          0.38220382800092745,
+          0.27381554200255775,
+          0.3209052829968277
+        ],
+        "conc_latency_p95_list": [
+          0.13697651999536897,
+          0.19080486999446286,
+          0.21337980000025708
+        ],
+        "conc_latency_avg_list": [
+          0.0945913238993058,
+          0.07845177926004877,
+          0.1035281632444164
+        ],
+        "st_ideal_insert_duration": 0,
+        "st_search_stage_list": [],
+        "st_search_time_list": [],
+        "st_max_qps_list_list": [],
+        "st_recall_list": [],
+        "st_ndcg_list": [],
+        "st_serial_latency_p99_list": [],
+        "st_serial_latency_p95_list": [],
+        "st_conc_failed_rate_list": []
+      },
+      "task_config": {
+        "db": "PgVector",
+        "db_config": {
+          "db_label": "pgvector-hnsw-m08-efc64",
+          "version": "",
+          "note": ""
+        },
+        "db_case_config": {
+          "metric_type": "COSINE",
+          "create_index_before_load": false,
+          "create_index_after_load": true,
+          "iterative_scan": "relaxed_order",
+          "m": 8,
+          "ef_construction": 64,
+          "ef_search": 64,
+          "index": "hnsw",
+          "maintenance_work_mem": "2GB",
+          "max_parallel_workers": 12,
+          "quantization_type": "vector",
+          "table_quantization_type": "vector",
+          "reranking": false,
+          "quantized_fetch_limit": null,
+          "reranking_metric": "COSINE"
+        },
+        "case_config": {
+          "case_id": 10,
+          "custom_case": {},
+          "k": 100,
+          "concurrency_search_config": {
+            "num_concurrency": [
+              1,
+              10,
+              20
+            ],
+            "concurrency_duration": 15,
+            "concurrency_timeout": 3600
+          }
+        },
+        "stages": [
+          "drop_old",
+          "load",
+          "search_serial",
+          "search_concurrent"
+        ]
+      },
+      "label": ":)"
+    }
+  ],
+  "file_fmt": "result_{}_{}_{}.json",
+  "timestamp": 1766185200.0
+}

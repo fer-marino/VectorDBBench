@@ -1,0 +1,92 @@
+{
+  "run_id": "2812661ffd5b4b3bb9adf2728dd1423f",
+  "task_label": "2812661ffd5b4b3bb9adf2728dd1423f",
+  "results": [
+    {
+      "metrics": {
+        "max_load_count": 0,
+        "insert_duration": 428.6749,
+        "optimize_duration": 4243.5702,
+        "load_duration": 4672.2451,
+        "qps": 26.9549,
+        "serial_latency_p99": 0.1818,
+        "serial_latency_p95": 0.1437,
+        "recall": 0.8986,
+        "ndcg": 0.9106,
+        "conc_num_list": [
+          1,
+          10,
+          20
+        ],
+        "conc_qps_list": [
+          7.6778,
+          25.226,
+          26.9549
+        ],
+        "conc_latency_p99_list": [
+          0.22282997500660712,
+          1.774954039994189,
+          3.0274078610078172
+        ],
+        "conc_latency_p95_list": [
+          0.20274962500479887,
+          1.0047168749952107,
+          2.0491394099910396
+        ],
+        "conc_latency_avg_list": [
+          0.12972329913840253,
+          0.391900059067256,
+          0.7187946497624967
+        ],
+        "st_ideal_insert_duration": 0,
+        "st_search_stage_list": [],
+        "st_search_time_list": [],
+        "st_max_qps_list_list": [],
+        "st_recall_list": [],
+        "st_ndcg_list": [],
+        "st_serial_latency_p99_list": [],
+        "st_serial_latency_p95_list": [],
+        "st_conc_failed_rate_list": []
+      },
+      "task_config": {
+        "db": "MariaDB",
+        "db_config": {
+          "db_label": "mariadb-hnsw-m08-efc64",
+          "version": "",
+          "note": ""
+        },
+        "db_case_config": {
+          "metric_type": "COSINE",
+          "M": 8,
+          "ef_search": 64,
+          "index": "HNSW",
+          "storage_engine": "InnoDB",
+          "max_cache_size": 536870912
+        },
+        "case_config": {
+          "case_id": 10,
+          "custom_case": {},
+          "k": 100,
+          "concurrency_search_config": {
+            "num_concurrency": [
+              1,
+              10,
+              20
+            ],
+            "concurrency_duration": 15,
+            "concurrency_timeout": 3600
+          }
+        },
+        "stages": [
+          "drop_old",
+          "load",
+          "search_serial",
+          "search_concurrent"
+        ]
+      },
+      "label": ":)"
+    }
+  ],
+  "file_fmt": "result_{}_{}_{}.json",
+  "timestamp": 1766185200.0
+}
