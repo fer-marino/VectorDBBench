@@ -12,7 +12,8 @@ from ....cli.cli import (
     IVFFlatTypedDict,
     cli,
     click_parameter_decorators_from_typed_dict,
-    run, get_custom_case_config,
+    run,
+    get_custom_case_config,
 )
 
 
@@ -118,6 +119,7 @@ def VectorChordIVF(
     **parameters: Unpack[VectorChordIVFFlatTypedDict],
 ):
     from .config import VectorChordConfig, VectorChordIVFFlatConfig
+
     parameters["custom_case"] = get_custom_case_config(parameters)
 
     run(

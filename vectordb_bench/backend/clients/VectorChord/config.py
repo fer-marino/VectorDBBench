@@ -52,14 +52,14 @@ class VectorChordIVFFlatConfig(PgVectorIVFFlatConfig, VectorChordIndexConfig):
             toml_parts = [
                 f"bits = {self.bits if self.bits else 1}",
                 f"m = {self.m if self.m else 16}",
-                f"ef_construction = {self.ef_construction if self.ef_construction else 256}"
+                f"ef_construction = {self.ef_construction if self.ef_construction else 256}",
             ]
 
         toml_config = "\n".join(toml_parts)
 
         return {
             "metric": self.parse_metric(),
-            "index_type": self.index_method, 
+            "index_type": self.index_method,
             "options": toml_config,
         }
 

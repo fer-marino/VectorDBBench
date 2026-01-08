@@ -46,8 +46,7 @@ def main():
             for d in test_result.results
             if d.task_config.case_config.case_id != CaseType.CapacityDim128
             and d.task_config.case_config.case_id != CaseType.CapacityDim960
-            if d.task_config.db != DB.ZillizCloud
-            or test_result.timestamp >= datetime(2024, 1, 1).timestamp()
+            if d.task_config.db != DB.ZillizCloud or test_result.timestamp >= datetime(2024, 1, 1).timestamp()
         ]
 
         # compute qp$
