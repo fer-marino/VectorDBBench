@@ -32,6 +32,6 @@ def initSidebarExanderStyle(st):
                             margin-bottom: 8px;
                             float: right;
                         }
-        <style>""",
+        </style>""",
         unsafe_allow_html=True,
     )

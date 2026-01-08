@@ -20,12 +20,6 @@ def run_streamlit():
         f"{pathlib.Path(__file__).parent}/frontend/vdbbench.py",
         "--logger.level",
         "info",
-        "--theme.base",
-        "light",
-        "--theme.primaryColor",
-        "#3670F2",
-        "--theme.secondaryBackgroundColor",
-        "#F0F2F6",
     ]
     log.debug(f"cmd: {cmd}")
     try:

@@ -43,7 +43,7 @@ class VectorChordIVFFlatConfig(PgVectorIVFFlatConfig, VectorChordIndexConfig):
         if self.index_method == "vchordrq":
             lists_val = self.lists if self.lists is not None else 1024
             toml_parts = [
-                f"residual_quantization = {str(self.residual_quantization).lower()}"
+                f"residual_quantization = {str(self.residual_quantization).lower()}",
                 f"build.internal.spherical_centroids = {str(self.spherical_centroids).lower()}",
                 f"build.internal.build_threads = {self.max_parallel_workers if self.max_parallel_workers else 4}",
                 f"build.internal.lists = [{lists_val}]",

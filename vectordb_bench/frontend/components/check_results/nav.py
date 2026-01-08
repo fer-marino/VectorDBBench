@@ -38,7 +38,7 @@ def NavToPages(st):
 
     html = ""
     for i, option in enumerate(options):
-        html += f'<a href="/{option["link"]}" target="_self" style="text-decoration: none; padding: 0.1px 0.2px;">{option["name"]}</a>'
+        html += f'<a href="./{option["link"]}" target="_self" style="text-decoration: none; padding: 0.1px 0.2px;">{option["name"]}</a>'
         if i < len(options) - 1:
             html += '<span style="color: #888; margin: 0 5px;">|</span>'
     st.markdown(html, unsafe_allow_html=True)

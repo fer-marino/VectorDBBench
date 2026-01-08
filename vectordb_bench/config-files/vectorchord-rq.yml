@@ -18,7 +18,7 @@ vectorchordivf:
     residual_quantization: "True"
     spherical_centroids: "True"
     lists: 100        # Roughly equivalent to providing a good cluster granularity
-    probes: 10         # Directly corresponds to your search effort (ef_search)
+    probes: 50         # Directly corresponds to your search effort (ef_search)
   - db_label: vchordrq-m16
     user_name: postgres
     password: postgres
@@ -38,7 +38,7 @@ vectorchordivf:
     residual_quantization: "True"
     spherical_centroids: "True"
     lists: 1024        # Roughly equivalent to providing a good cluster granularity
-    probes: 50        # Directly corresponds to your search effort (ef_search)
+    probes: 150        # Directly corresponds to your search effort (ef_search)
   - db_label: vchordrq-m24
     user_name: postgres
     password: postgres
@@ -58,4 +58,4 @@ vectorchordivf:
     residual_quantization: "True"
     spherical_centroids: "True"
     lists: 16384        # Roughly equivalent to providing a good cluster granularity
-    probes: 200        # Directly corresponds to your search effort (ef_search)
+    probes: 400        # Directly corresponds to your search effort (ef_search)

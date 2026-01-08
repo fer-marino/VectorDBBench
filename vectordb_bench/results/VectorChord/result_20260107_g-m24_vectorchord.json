@@ -1,0 +1,108 @@
+{
+  "run_id": "33a4a635c59c4cda93d94c4f666b9699",
+  "task_label": "33a4a635c59c4cda93d94c4f666b9699",
+  "results": [
+    {
+      "metrics": {
+        "max_load_count": 0,
+        "insert_duration": 213.2667,
+        "optimize_duration": 465.077,
+        "load_duration": 678.3437,
+        "qps": 1061.0601,
+        "serial_latency_p99": 0.0254,
+        "serial_latency_p95": 0.0203,
+        "recall": 0.8736,
+        "ndcg": 0.8975,
+        "conc_num_list": [
+          1,
+          10,
+          20
+        ],
+        "conc_qps_list": [
+          29.1051,
+          531.7266,
+          1061.0601
+        ],
+        "conc_latency_p99_list": [
+          0.08662974000908444,
+          0.08576962794875727,
+          0.058999816006980836
+        ],
+        "conc_latency_p95_list": [
+          0.058389500016346574,
+          0.05642245995113621,
+          0.039231540006585415
+        ],
+        "conc_latency_avg_list": [
+          0.03403823582567444,
+          0.018637104917197382,
+          0.018493447732837894
+        ],
+        "st_ideal_insert_duration": 0,
+        "st_search_stage_list": [],
+        "st_search_time_list": [],
+        "st_max_qps_list_list": [],
+        "st_recall_list": [],
+        "st_ndcg_list": [],
+        "st_serial_latency_p99_list": [],
+        "st_serial_latency_p95_list": [],
+        "st_conc_failed_rate_list": []
+      },
+      "task_config": {
+        "db": "VectorChord",
+        "db_config": {
+          "db_label": "vchordg-m24",
+          "version": "",
+          "note": ""
+        },
+        "db_case_config": {
+          "metric_type": "COSINE",
+          "create_index_before_load": false,
+          "create_index_after_load": true,
+          "iterative_scan": "relaxed_order",
+          "residual_quantization": false,
+          "spherical_centroids": false,
+          "lists": 1024,
+          "probes": 64,
+          "index": "IVF_FLAT",
+          "maintenance_work_mem": null,
+          "max_parallel_workers": 12,
+          "quantization_type": null,
+          "table_quantization_type": null,
+          "reranking": null,
+          "quantized_fetch_limit": null,
+          "reranking_metric": null,
+          "index_method": "vchordg",
+          "epsilon": 0.1,
+          "ef_search": 64,
+          "m": 24,
+          "ef_construction": 128,
+          "bits": 1
+        },
+        "case_config": {
+          "case_id": 10,
+          "custom_case": {},
+          "k": 100,
+          "concurrency_search_config": {
+            "num_concurrency": [
+              1,
+              10,
+              20
+            ],
+            "concurrency_duration": 15,
+            "concurrency_timeout": 3600
+          }
+        },
+        "stages": [
+          "drop_old",
+          "load",
+          "search_serial",
+          "search_concurrent"
+        ]
+      },
+      "label": ":)"
+    }
+  ],
+  "file_fmt": "result_{}_{}_{}.json",
+  "timestamp": 1767740400.0
+}

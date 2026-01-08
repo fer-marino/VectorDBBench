@@ -1,1 +1,90 @@
-{"run_id":"bd02ed171d144a31b062b65ea13dc4b3","task_label":"bd02ed171d144a31b062b65ea13dc4b3","results":[{"metrics":{"max_load_count":0,"insert_duration":760.3371,"optimize_duration":0.4379,"load_duration":760.775,"qps":717.5202,"serial_latency_p99":0.0151,"serial_latency_p95":0.0113,"recall":0.9361,"ndcg":0.9459,"conc_num_list":[1,10,20],"conc_qps_list":[154.4685,717.5202,503.9507],"conc_latency_p99_list":[0.017199939998681673,0.052137575003143866,0.11948850999688146],"conc_latency_p95_list":[0.010496699993382208,0.020252799993613735,0.08166938999711419],"conc_latency_avg_list":[0.006351519271494996,0.013360291813618362,0.037316056346278305],"st_ideal_insert_duration":0,"st_search_stage_list":[],"st_search_time_list":[],"st_max_qps_list_list":[],"st_recall_list":[],"st_ndcg_list":[],"st_serial_latency_p99_list":[],"st_serial_latency_p95_list":[],"st_conc_failed_rate_list":[]},"task_config":{"db":"WeaviateCloud","db_config":{"db_label":"weaviate-m24-efc128","version":"","note":""},"db_case_config":{"metric_type":"COSINE","ef":64,"efConstruction":128,"maxConnections":24},"case_config":{"case_id":10,"custom_case":{},"k":100,"concurrency_search_config":{"num_concurrency":[1,10,20],"concurrency_duration":15,"concurrency_timeout":3600}},"stages":["drop_old","load","search_serial","search_concurrent"]},"label":":)"}],"file_fmt":"result_{}_{}_{}.json","timestamp":1766703600.0}
+{
+  "run_id": "bd02ed171d144a31b062b65ea13dc4b3",
+  "task_label": "bd02ed171d144a31b062b65ea13dc4b3",
+  "results": [
+    {
+      "metrics": {
+        "max_load_count": 0,
+        "insert_duration": 760.3371,
+        "optimize_duration": 0.4379,
+        "load_duration": 760.775,
+        "qps": 717.5202,
+        "serial_latency_p99": 0.0151,
+        "serial_latency_p95": 0.0113,
+        "recall": 0.9361,
+        "ndcg": 0.9459,
+        "conc_num_list": [
+          1,
+          10,
+          20
+        ],
+        "conc_qps_list": [
+          154.4685,
+          717.5202,
+          503.9507
+        ],
+        "conc_latency_p99_list": [
+          0.017199939998681673,
+          0.052137575003143866,
+          0.11948850999688146
+        ],
+        "conc_latency_p95_list": [
+          0.010496699993382208,
+          0.020252799993613735,
+          0.08166938999711419
+        ],
+        "conc_latency_avg_list": [
+          0.006351519271494996,
+          0.013360291813618362,
+          0.037316056346278305
+        ],
+        "st_ideal_insert_duration": 0,
+        "st_search_stage_list": [],
+        "st_search_time_list": [],
+        "st_max_qps_list_list": [],
+        "st_recall_list": [],
+        "st_ndcg_list": [],
+        "st_serial_latency_p99_list": [],
+        "st_serial_latency_p95_list": [],
+        "st_conc_failed_rate_list": []
+      },
+      "task_config": {
+        "db": "WeaviateCloud",
+        "db_config": {
+          "db_label": "weaviate-m24-efc128",
+          "version": "",
+          "note": ""
+        },
+        "db_case_config": {
+          "metric_type": "COSINE",
+          "ef": 64,
+          "efConstruction": 128,
+          "maxConnections": 24
+        },
+        "case_config": {
+          "case_id": 10,
+          "custom_case": {},
+          "k": 100,
+          "concurrency_search_config": {
+            "num_concurrency": [
+              1,
+              10,
+              20
+            ],
+            "concurrency_duration": 15,
+            "concurrency_timeout": 3600
+          }
+        },
+        "stages": [
+          "drop_old",
+          "load",
+          "search_serial",
+          "search_concurrent"
+        ]
+      },
+      "label": ":)"
+    }
+  ],
+  "file_fmt": "result_{}_{}_{}.json",
+  "timestamp": 1766703600.0
+}
