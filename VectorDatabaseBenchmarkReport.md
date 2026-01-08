@@ -3,19 +3,20 @@
 
 ## 1. Executive Summary
 This benchmark evaluates the performance of **VectorChord**, **PgVector**, **Weaviate**, and **MariaDB**. We analyze the fundamental tradeoff between **Search Throughput (QPS)** and **Search Quality (Recall)**. VectorChord currently defines the "speed" frontier, while Weaviate and PgVector offer balanced "reliability" profiles for different connectivity needs.
+![QPS vs Recall Chart](qps_vs_recall.png)
 
 ## 2. Comparative Performance Table
 
-| Database        | Index Type          | Config (m/efc)   | Max QPS     | Recall     | P99 Latency | Tradeoff Profile |
-|:----------------|:--------------------|:-----------------|:------------|:-----------|:------------|:-----------------|
-| **VectorChord** | **Graph (`vchordg`)** | **m: 24, efc: 128**| **1061.06** | 0.8736     | **0.025s**  | **Ultra-Fast / High Accuracy** |
-| **VectorChord** | Graph (`vchordg`)   | m: 16, efc: 128  | 947.01      | 0.8625     | 0.029s      | High-Speed / High Accuracy |
-| **PgVector**    | HNSW                | m: 8, efc: 64    | 187.31      | **0.8829** | 0.119s      | Moderate Speed / **Peak Accuracy** |
-| **Weaviate**    | HNSW                | m: 24, efc: 128  | 28.14       | 0.8541     | 0.312s      | Balanced / High Recall |
-| **Weaviate**    | HNSW                | m: 16, efc: 128  | 33.82       | 0.8329     | 0.298s      | Balanced / Mid-High Recall |
-| **Weaviate**    | HNSW                | m: 8, efc: 64    | 39.55       | 0.8172     | 0.285s      | Balanced / Mid Recall |
-| **VectorChord** | RQ (`vchordrq`)     | Lists: 1024      | 699.49      | 0.7586     | 0.042s      | Fast / Mid Accuracy |
-| **MariaDB**     | HNSW                | m: 16, efc: 128  | 44.27       | 0.6475     | 0.143s      | Relational / Low Recall |
+| Database        | Index Type            | Config (m/efc)      | Max QPS     | Recall     | P99 Latency | Tradeoff Profile                   |
+|:----------------|:----------------------|:--------------------|:------------|:-----------|:------------|:-----------------------------------|
+| **VectorChord** | **Graph (`vchordg`)** | **m: 24, efc: 128** | **1061.06** | 0.8736     | **0.025s**  | **Ultra-Fast / High Accuracy**     |
+| **VectorChord** | Graph (`vchordg`)     | m: 16, efc: 128     | 947.01      | 0.8625     | 0.029s      | High-Speed / High Accuracy         |
+| **PgVector**    | HNSW                  | m: 8, efc: 64       | 187.31      | **0.8829** | 0.119s      | Moderate Speed / **Peak Accuracy** |
+| **Weaviate**    | HNSW                  | m: 24, efc: 128     | 28.14       | 0.8541     | 0.312s      | Balanced / High Recall             |
+| **Weaviate**    | HNSW                  | m: 16, efc: 128     | 33.82       | 0.8329     | 0.298s      | Balanced / Mid-High Recall         |
+| **Weaviate**    | HNSW                  | m: 8, efc: 64       | 39.55       | 0.8172     | 0.285s      | Balanced / Mid Recall              |
+| **VectorChord** | RQ (`vchordrq`)       | Lists: 1024         | 699.49      | 0.7586     | 0.042s      | Fast / Mid Accuracy                |
+| **MariaDB**     | HNSW                  | m: 16, efc: 128     | 44.27       | 0.6475     | 0.143s      | Relational / Low Recall            |
 
 ---
 
